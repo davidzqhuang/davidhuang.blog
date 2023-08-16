@@ -1,1 +1,1 @@
-find the site at ![davidhuang.blog](davidhuang.blog)
+find the site at [davidhuang.blog](davidhuang.blog)
