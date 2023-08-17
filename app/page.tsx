@@ -38,7 +38,7 @@ export default function Home() {
         <div
           className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4"
           onClick={() => router.push("/posts/3dsplatmodal")}>
-          <h1 className={css.title}>3D Gaussian Splatting on Modal Labs</h1>
+          <h1 className={css.title}>3D Gaussian Splatting on Modal Labs (getting the image defined)</h1>
         </div>
       </div>
     </div>
