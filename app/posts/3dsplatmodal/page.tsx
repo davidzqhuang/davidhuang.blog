@@ -2,9 +2,6 @@
 
 import css from "../../../styles/Post.module.css";
 
-import { Canvas } from "@react-three/fiber";
-import Flower from "../../../components/Flower";
-
 export default function Post() {
     return (
         <>
