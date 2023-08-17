@@ -3,11 +3,15 @@ import * as React from 'react'
 import { useRef, useState, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useLoader } from '@react-three/fiber'
-
 // @ts-ignore
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-export default function Flower(props: JSX.IntrinsicElements['mesh']) {
+interface FlowerProps {
+  onLoaded?: () => void; // New onLoaded prop
+  [key: string]: any;
+}
+
+export default function Flower({ onLoaded, ...props }: FlowerProps) {
   // This reference will give us direct access to the THREE.Mesh object
   const ref = useRef<THREE.Mesh>(null!)
   
@@ -19,6 +23,14 @@ export default function Flower(props: JSX.IntrinsicElements['mesh']) {
   useFrame((state, delta) => (ref.current.rotation.y += 0.006))
 
   const gltf = useLoader(GLTFLoader, '/flower6.glb')
+
+  // Call onLoaded callback when gltf is loaded
+  useEffect(() => {
+    if (gltf && onLoaded) {
+      onLoaded();
+    }
+  }, [gltf, onLoaded]);
+
   return (
     <mesh
       {...props}
