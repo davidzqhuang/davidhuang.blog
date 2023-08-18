@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import css from "../styles/Home.module.css";
 
 import { useState } from 'react'; // Import useState
@@ -38,8 +39,19 @@ export default function Home() {
         <div
           className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4"
           onClick={() => router.push("/posts/3dsplatmodal")}>
-          <h1 className={css.title}>3D Gaussian Splatting on Modal Labs (getting the image defined)</h1>
+          <h1 className={css.title}>3D Gaussian Splatting on Modal Labs (getting the container image defined)</h1>
         </div>
+        <div
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4"
+          onClick={() => router.push("/posts/trumpindicted")}>
+          <h1 className={css.title}>Trump-world Indictments in Fulton County, Visualized</h1>
+          <Image 
+            src="/images/trumpindicted/coverTrumpFulton.jpg" 
+            width={400} 
+            height={400}
+            alt={"Network of Trump world codefendants and charge"}></Image>
+        </div>
+
       </div>
     </div>
   );

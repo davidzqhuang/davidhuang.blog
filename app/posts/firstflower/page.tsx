@@ -10,7 +10,7 @@ export default function Post() {
     return (
         <>
             <div className={css.postContainer}>
-                <h1 className={css.postTitle}>(20230816) Experiments in Blender and react-three fiber</h1>
+                <h1 className={css.postTitle}>Experiments in Blender and react-three fiber</h1>
                 <Canvas>
                     <ambientLight intensity={0.6} />
                     <directionalLight color="white" position={[0, 5, 5]} castShadow={true} />
