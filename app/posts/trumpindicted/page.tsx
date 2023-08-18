@@ -68,11 +68,12 @@ export default function Post() {
 
         // Apply the zoom behavior to the SVG
         svg.call(zoom);
+        svg.call(zoom.transform, d3.zoomIdentity.translate(0,0).scale(0.5));
 
         const trumpNode = data.nodes.find(node => node.id === "Donald Trump");
         if (trumpNode) {
             trumpNode.fx = width / 2;
-            trumpNode.fy = 50; // or whatever y-position you want for the top center
+            trumpNode.fy = height / 2; // or whatever y-position you want for the top center
         }
 
         // Create force simulation
@@ -246,7 +247,6 @@ export default function Post() {
 
                     // Constraint the magnitude of displacement
                     const adjustedY = Math.abs(displacementY) > 32 ? (parentData.y + Math.sign(displacementY) * 32) : centroidY;
-
                     return adjustedY + (i * (d.type === "person" ? 24 : 16));
                 });
         });
