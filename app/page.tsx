@@ -53,7 +53,7 @@ export default function Home() {
         </div>
         <div
           className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4"
-          onClick={() => router.push("/posts/3dsplatmodal")}>
+          onClick={() => router.push("/posts/hackscillm")}>
           <h1 className={css.title}>Hacking Kaggle Science LLM with difflib and more</h1>
         </div>
 
