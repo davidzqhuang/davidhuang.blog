@@ -15,6 +15,14 @@
     color: #333;
 }
 
+/* italics */
+.postSubtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #555;
+    font-style: italic;
+}
+
 /* Meta information (date, author, etc.) */
 .metaInfo {
     font-size: 0.9rem;
