@@ -15,11 +15,11 @@ export default function Home() {
   const [isFlowerLoaded, setIsFlowerLoaded] = useState(false);
 
   return (
-    <div className="p-32">
-      <h1 className="text-3xl">davidhuang.blog</h1>
+    <div className={`p-32 bg-gradient-to-tr from-orange-200 from-5% via-amber-400 via-30% to-pink-200 to-90%`}>
+      <h1 className="text-3xl bg-white p-4 rounded-lg border-b-slate-200 shadow-xl">davidhuang.blog</h1>
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/firstflower")}>
           <h1 className={css.title}>Experiments in Blender and @react-three/fiber</h1>
           <div onClick={() => router.push("/posts/firstflower")}>
@@ -37,12 +37,12 @@ export default function Home() {
           </div>
         </div>
         <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/3dsplatmodal")}>
           <h1 className={css.title}>3D Gaussian Splatting on Modal Labs (getting the container image defined)</h1>
         </div>
         <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/trumpindicted")}>
           <h1 className={css.title}>Trump-world Indictments in Fulton County, Visualized</h1>
           <Image 
@@ -52,7 +52,7 @@ export default function Home() {
             alt={"Network of Trump world codefendants and charge"}></Image>
         </div>
         <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/hackscillm")}>
           <h1 className={css.title}>Hacking Kaggle Science LLM with difflib and more</h1>
           <Image
@@ -62,7 +62,7 @@ export default function Home() {
             alt={"Hacking Kaggle Science LLM with difflib and more"}></Image>
         </div>
         <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/polfriend")}>
           <h1 className={css.title}>Talk Politics, a little differently</h1>
           <Image
@@ -72,7 +72,7 @@ export default function Home() {
             alt={"Talk Politics, Crystallize your Beliefs"}></Image>
         </div>
         <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/everydayai")}>
           <h1 className={css.title}>The everyday use case for Artificial Intelligence</h1>
           <Image
@@ -82,7 +82,7 @@ export default function Home() {
             alt={"The everyday use case for Artificial Intelligence"}></Image>
         </div>
         <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/irises1")}>
           <h1 className={css.title}>Painting Irises</h1>
           <Image
