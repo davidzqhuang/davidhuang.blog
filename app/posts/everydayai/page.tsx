@@ -1,8 +1,10 @@
 import css from "../../../styles/Post.module.css";
+import * as U from "../../../components/PostUtils";
 
 export default function Post() {
     return (
         <>
+            <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>The everyday use case for Artificial Intelligence </h1>
                 <p className={css.postContent}>What will be the big winner in the next two decades in the United States? If it’s Artificial Intelligence (AI), what will be the big AI winner? I contend that United States consumers do not want, care about AI, or are impacted by AI. The extent to which AI matters will be how much it matters to the multinational corporations, which dominate the global economy.</p>

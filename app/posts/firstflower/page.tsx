@@ -5,10 +5,12 @@ import css from "../../../styles/Post.module.css";
 
 import { Canvas } from "@react-three/fiber";
 import Flower from "../../../components/Flower";
+import * as U from "../../../components/PostUtils";
 
 export default function Post() {
     return (
         <>
+            <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Experiments in Blender and react-three fiber</h1>
                 <Canvas>

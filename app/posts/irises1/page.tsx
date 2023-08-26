@@ -1,9 +1,11 @@
 import Image from "next/image";
 import css from "../../../styles/Post.module.css";
+import * as U from "../../../components/PostUtils";
 
 export default function Post() {
     return (
         <>
+            <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Painting irises 1</h1>
                 <p className={css.postContent}>I started with a color pencil study from reference.</p>

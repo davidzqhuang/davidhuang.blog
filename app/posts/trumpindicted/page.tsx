@@ -7,6 +7,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import css from "../../../styles/Post.module.css";
+import * as U from "../../../components/PostUtils";
 
 type graphData = {
     nodes: {
@@ -68,7 +69,7 @@ export default function Post() {
 
         // Apply the zoom behavior to the SVG
         svg.call(zoom);
-        svg.call(zoom.transform, d3.zoomIdentity.translate(0,0).scale(0.5));
+        svg.call(zoom.transform, d3.zoomIdentity.translate(0, 0).scale(0.5));
 
         const trumpNode = data.nodes.find(node => node.id === "Donald Trump");
         if (trumpNode) {
@@ -254,13 +255,16 @@ export default function Post() {
     }, [data]);
 
     return (
-        <div className="p-4" style={{
-            width: "100vh",
-            height: "100vh"
-        }}>
-            <h1 className={css.postTitle}>Trump-world Indictments in Fulton County, Visualized</h1>
-            <p>Charges are shown by blue circles, defendants are shown by blue circles. Trump is the big orange circle. There are thin grey lines connecting defendants with the crimes they are charged with. Individuals who are co-defendants in three or more charges are connected by a thick red line. You can zoom in and out, and youcan select an individual circle to see all co-defendants of a charge, are all charges of a defendant.</p>
-            <svg ref={svgRef} width="100%" height="100%"></svg>
+        <div>
+            <U.HomeButton />
+            <div className="p-4" style={{
+                width: "100vh",
+                height: "100vh"
+            }}>
+                <h1 className={css.postTitle}>Trump-world Indictments in Fulton County, Visualized</h1>
+                <p>Charges are shown by blue circles, defendants are shown by blue circles. Trump is the big orange circle. There are thin grey lines connecting defendants with the crimes they are charged with. Individuals who are co-defendants in three or more charges are connected by a thick red line. You can zoom in and out, and youcan select an individual circle to see all co-defendants of a charge, are all charges of a defendant.</p>
+                <svg ref={svgRef} width="100%" height="100%"></svg>
+            </div>
         </div>
     );
 }

@@ -1,9 +1,11 @@
 import css from "../../../styles/Post.module.css";
 import Editor from '@monaco-editor/react';
+import * as U from "../../../components/PostUtils";
 
 export default function Post() {
     return (
         <>
+            <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Hacking Kaggle Science LLM with difflib and more</h1>
                 <p className={css.postContent}>Inspired by all the buzz around gzip, and seeing the shiny prizes surrounding Kaggle's Science LLM competition, where you try to make an algorithm to predict the answer to multiple choice question, I thought... what are the silliest most fun algorithms for doing so?</p>

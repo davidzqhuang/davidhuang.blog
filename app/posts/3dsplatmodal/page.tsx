@@ -3,9 +3,12 @@
 import css from "../../../styles/Post.module.css";
 import Editor from '@monaco-editor/react';
 
+import * as U from "../../../components/PostUtils";
+
 export default function Post() {
     return (
         <>
+            <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>3D Gaussian Splatting on Modal Labs</h1>
                 <p className={css.postContent}>Though yesterday I think I graduated from Kindergarten in terms of Blender skills, I would very much like an easier way to create 3D assets and scenes. There is amazing paper that came out literally days ago, <a className={css.a} href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/">3D Gaussian Splatting for Real-Time Radiance Fields</a>, which is not only a huge improvement on the previous state-of-the-art but is also visually stunning, and seemingly good-enough-to-use and well-packaged.</p>

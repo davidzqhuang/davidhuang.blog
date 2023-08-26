@@ -8,6 +8,7 @@ import refData from './data.json'
 import { useEffect, useRef } from 'react'
 
 import css from "../../../styles/Post.module.css";
+import * as U from "../../../components/PostUtils";
 
 
 console.log(refData)
@@ -170,6 +171,7 @@ export default function Chat() {
     console.log(messages)
     return (
         <div className={css.postContainer}>
+            <U.HomeButton />
             <h1 className={css.postTitle}>Talking Politics with AI</h1>
             <p className={css.postSubTitle} style={{fontStyle: 'italic'}}>The AI is GPT-3.5. It's notion of politics come from the <a href="https://www.pewresearch.org/politics/2021/11/09/beyond-red-vs-blue-the-political-typology-2/" className={css.a}>Pew Research Center's Political Typology report in 2021</a>. This is not affiliated with the Pew at all, information may be inaccurate. The objective is for the user to be able to talk about politics, work with the AI to create a clear statement of their political beliefs in the context of current United States politics, and discover similar and different clusters of political thought to their own.</p>
             <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch p-4 border border-neutral-200 m-4">
