@@ -74,7 +74,7 @@ export default function Home() {
         <div
           className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/everydayai")}>
-          <h1 className={css.title}>The everyday use case for Artificial Intelligence</h1>
+          <h1 className={css.title}>The everyday use case for Artificial Intelligence, an essay</h1>
           <Image
             src="/images/everydayai/icon.jpg"
             width={400}
@@ -91,7 +91,19 @@ export default function Home() {
             height={400}
             alt={"Painting Irises"}></Image>
         </div>
+        
       </div>
     </div>
   );
 }
+
+// <div
+//   className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
+//   onClick={() => router.push("/posts/wayforward")}>
+//   <h1 className={css.title}>The Way Forward in the 21st century</h1>
+//   <Image
+//     src="/images/wayforward/icon.jpg"
+//     width={400}
+//     height={400}
+//     alt={"The Way Forward"}></Image>
+// </div>
