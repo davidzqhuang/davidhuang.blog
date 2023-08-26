@@ -71,6 +71,26 @@ export default function Home() {
             height={400}
             alt={"Talk Politics, Crystallize your Beliefs"}></Image>
         </div>
+        <div
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          onClick={() => router.push("/posts/everydayai")}>
+          <h1 className={css.title}>The everyday use case for Artificial Intelligence</h1>
+          <Image
+            src="/images/everydayai/icon.jpg"
+            width={400}
+            height={400}
+            alt={"The everyday use case for Artificial Intelligence"}></Image>
+        </div>
+        <div
+          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer"
+          onClick={() => router.push("/posts/irises1")}>
+          <h1 className={css.title}>Painting Irises</h1>
+          <Image
+            src="/images/irises1/icon.jpeg"
+            width={400}
+            height={400}
+            alt={"Painting Irises"}></Image>
+        </div>
       </div>
     </div>
   );
