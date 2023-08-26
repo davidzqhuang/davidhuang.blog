@@ -8,9 +8,6 @@ dependencies:
   '@monaco-editor/react':
     specifier: ^4.5.1
     version: 4.5.2(monaco-editor@0.41.0)(react-dom@18.2.0)(react@18.2.0)
-  '@nanostores/react':
-    specifier: github:ai/react
-    version: github.com/ai/react/b71b8427c9ec9c780083544505495ce7b36b7059(nanostores@0.9.3)(react@18.2.0)
   '@react-three/cannon':
     specifier: ^6.5.2
     version: 6.6.0(@react-three/fiber@8.13.7)(react@18.2.0)(three@0.155.0)(typescript@5.1.6)
@@ -2778,11 +2775,6 @@ packages:
     hasBin: true
     dev: false
 
-  /nanostores@0.9.3:
-    resolution: {integrity: sha512-KobZjcVyNndNrb5DAjfs0WG0lRcZu5Q1BOrfTOxokFLi25zFrWPjg+joXC6kuDqNfSt9fQwppyjUBkRPtsL+8w==}
-    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
-    dev: false
-
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: false
@@ -3920,19 +3912,5 @@ packages:
       react:
         optional: true
     dependencies:
-      react: 18.2.0
-    dev: false
-
-  github.com/ai/react/b71b8427c9ec9c780083544505495ce7b36b7059(nanostores@0.9.3)(react@18.2.0):
-    resolution: {commit: b71b8427c9ec9c780083544505495ce7b36b7059, repo: git+ssh://git@github.com/ai/react.git, type: git}
-    id: github.com/ai/react/b71b8427c9ec9c780083544505495ce7b36b7059
-    name: '@nanostores/react'
-    version: 0.7.1
-    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
-    peerDependencies:
-      nanostores: ^0.9.0
-      react: '>=18.0.0'
-    dependencies:
-      nanostores: 0.9.3
       react: 18.2.0
     dev: false

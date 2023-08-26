@@ -21,7 +21,7 @@ let refDataTyped = refData as unknown as RefData
 
 import * as d3 from 'd3';
 
-function PoliticalAlignmentChart({ data }) {
+function PoliticalAlignmentChart({ data } : { data: { [key: string]: string } }) {
     // Ref to attach the chart to the DOM element
     const chartRef = useRef(null);
 
@@ -46,7 +46,8 @@ function PoliticalAlignmentChart({ data }) {
 
         const yScale = d3
             .scaleLinear()
-            .domain([0, d3.max(chartData, (d) => d.value)])
+            //eslint-disable-next-line
+            .domain([0, d3.max(chartData, (d) => d.value) as number])
             .nice()
             .range([height, 0]);
 
@@ -68,7 +69,7 @@ function PoliticalAlignmentChart({ data }) {
             .enter()
             .append('rect')
             .attr('class', 'bar')
-            .attr('x', (d) => xScale(d.label))
+            .attr('x', (d) => xScale(d.label) as number)
             .attr('y', (d) => yScale(d.value))
             .attr('width', xScale.bandwidth())
             .attr('height', (d) => height - yScale(d.value));
