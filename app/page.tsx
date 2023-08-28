@@ -8,6 +8,17 @@ import { useState } from 'react'; // Import useState
 import { Canvas } from "@react-three/fiber";
 import Flower from "../components/Flower";
 
+import posts from "./posts/posts.json";
+
+type Post = {
+  id: string;
+  title: string;
+  date: string;
+  icon: string;
+}
+
+let postList: Post[] = posts;
+
 export default function Home() {
   const router = useRouter()
 
@@ -17,7 +28,20 @@ export default function Home() {
   return (
     <div className={`p-32 bg-gradient-to-tr from-orange-200 from-5% via-amber-400 via-30% to-pink-200 to-90%`}>
       <h1 className="text-3xl bg-white p-4 rounded-lg border-b-slate-200 shadow-xl">davidhuang.blog</h1>
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">{
+        postList.map((post) => {
+          return <div
+            className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
+            onClick={() => router.push(`/posts/${post.id}`)}>
+            <h1 className={css.title}>{post.title}</h1>
+            <Image
+              src={`/images/${post.id}/${post.icon}`}
+              width={400}
+              height={400}
+              alt={"Painting Irises"}></Image>
+          </div>
+        })
+      }
         <div
           className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/firstflower")}>
@@ -45,9 +69,9 @@ export default function Home() {
           className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/trumpindicted")}>
           <h1 className={css.title}>Trump-world Indictments in Fulton County, Visualized</h1>
-          <Image 
-            src="/images/trumpindicted/coverTrumpFulton.jpg" 
-            width={400} 
+          <Image
+            src="/images/trumpindicted/coverTrumpFulton.jpg"
+            width={400}
             height={400}
             alt={"Network of Trump world codefendants and charge"}></Image>
         </div>
@@ -91,7 +115,7 @@ export default function Home() {
             height={400}
             alt={"Painting Irises"}></Image>
         </div>
-        
+
       </div>
     </div>
   );
