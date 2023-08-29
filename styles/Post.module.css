@@ -48,6 +48,16 @@
     font-style: italic;
 }
 
+.postContentExtraEmphasis {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-style: italic;
+}
+
 /* Images inside the blog */
 .postImage {
     max-width: 100%;

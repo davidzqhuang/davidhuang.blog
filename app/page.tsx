@@ -30,7 +30,7 @@ export default function Home() {
       <h1 className="text-3xl bg-white p-4 rounded-lg border-b-slate-200 shadow-xl">davidhuang.blog</h1>
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">{
         postList.map((post) => {
-          return <div
+          return <div key={post.id}
             className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
             onClick={() => router.push(`/posts/${post.id}`)}>
             <h1 className={css.title}>{post.title}</h1>

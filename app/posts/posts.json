@@ -1,5 +1,11 @@
 [
     {
+        "id": "compoundingai",
+        "title": "Compounding Artificial Intelligence (AI) Products",
+        "date": "2023-08-29T13:53:45.284215",
+        "icon": "icon.jpg"
+    },
+    {
         "id": "wakesleep",
         "title": "Are current language models more awake or asleep?",
         "date": "2023-08-28T14:52:57+00:00",

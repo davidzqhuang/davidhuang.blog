@@ -1,7 +1,6 @@
 'use client'
 
 import css from "../../../styles/Post.module.css";
-import Editor from '@monaco-editor/react';
 
 import * as U from "../../../components/PostUtils";
 
@@ -29,13 +28,13 @@ export default function Post() {
                     They would still be asleep.
                 </p>
                 <p className={css.postContent}>
-                    Here is one proposals people have had for waking our zombies up. Some people suggest that we give our zombies a big notepad. But can you imagine? Talking to some sleep-deprived zombie and they are frantically scribbling down what you say, flipping through pages, running through a library, googling, and then knee-jerking a response over and over again. They are faking it. And yes I know, there are entire firms based off of this premise and good for them. But even then, at those firms, they don't expect those zombies to be god-forbid talking to their clients or making real decisions! Of course not, they are zombies.
+                    Here is one proposal people have had for waking our zombies up. Some people suggest that we give our zombies a big notepad. But can you imagine? Talking to some sleep-deprived zombie and they are frantically scribbling down what you say, flipping through pages, running through a library, googling, and then knee-jerking a response over and over again. They are faking it. And yes I know, there are entire firms based off of this premise and good for them. But even then, at those firms, they don't expect those zombies to be god-forbid talking to their clients or making real decisions! Of course not, they are zombies.
                 </p>
                 <p className={css.postContent}>
                     That is not to say that an army of zombies is not useful. I could certainly use an army of zombies. I'm sure an army of zombies could be commercially viable too, and I'm sure there is an industry in making and maintaining an army of zombies as well. But, I think that that is not the future, it can't be the future. 
                 </p>
                 <p>
-                    It is like the Empire in Star Wars. The Sith have ensembled masses of droids and clones to overwhelm our public squares, art, culture, science, relationships, politics and craft. They can be useful and powerful, but they are asleep at the wheel. They come in hordes and those hordes are overwhelming. But, they can be Jedi mind tricked and they have horrible accuracy. They are pretty good at operating machinery or programming systems. But, they don't have direction and are fundamentally a static vision of the future.
+                    It is like the Empire in Star Wars. The Sith have ensembled masses of droids and clones to overwhelm our public squares, art, culture, science, relationships, politics and craft. They can be useful and powerful, but they are asleep at the wheel. They come in hordes and those hordes are overwhelming. But, they can be Jedi mind tricked and they have horrible accuracy. They are pretty good at operating machinery or programming systems. But, they don't have direction and are fundamentally a static vision of the future, because, you know by now, they are asleep so they can't evolve a direction or a vision of the future.
                 </p>
             </div>
         </>
