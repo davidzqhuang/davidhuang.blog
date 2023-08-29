@@ -1,13 +1,19 @@
 import css from "../../../styles/Post.module.css";
 import * as U from "../../../components/PostUtils";
-import Head from "next/head";
+
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: 'The everyday use case for Artificial Intelligence',
+    description: 'The personal blog site of David, not to be confused with other David Huangs.',
+    icons: {
+      icon: '/icon.png',
+    }
+  }
 
 export default function Post() {
     return (
         <>
-            <Head>
-                <title>The everyday use case for Artificial Intelligence </title>
-            </Head>
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>The everyday use case for Artificial Intelligence </h1>

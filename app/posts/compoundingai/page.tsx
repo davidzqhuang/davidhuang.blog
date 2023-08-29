@@ -1,17 +1,20 @@
-
-'use client'
-
 import css from "../../../styles/Post.module.css";
 
 import * as U from "../../../components/PostUtils";
-import Head from "next/head";
+
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Compounding Artificial Intelligence (AI) Products',
+    description: 'The personal blog site of David, not to be confused with other David Huangs.',
+    icons: {
+      icon: '/icon.png',
+    }
+  }
 
 export default function Post() {
     return (
         <>
-            <Head>
-                <title>Compounding Artificial Intelligence (AI) Products</title>
-            </Head>
             <U.HomeButton />
 
             <div className={css.postContainer}>

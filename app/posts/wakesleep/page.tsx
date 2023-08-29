@@ -3,14 +3,18 @@
 import css from "../../../styles/Post.module.css";
 
 import * as U from "../../../components/PostUtils";
-import Head from "next/head";
+import type { Metadata } from 'next';
 
+export const metadata: Metadata = {
+    title: 'Are current language models more awake or asleep?',
+    description: 'The personal blog site of David, not to be confused with other David Huangs.',
+    icons: {
+      icon: '/icon.png',
+    }
+  }
 export default function Post() {
     return (
         <>
-            <Head>
-                <title>Are current language models more awake or asleep?</title>
-            </Head>
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Are current language models more awake or asleep?</h1>
