@@ -31,14 +31,14 @@ export default function Home() {
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">{
         postList.map((post) => {
           return <div key={post.id}
-            className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
+            className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl space-y-8"
             onClick={() => router.push(`/posts/${post.id}`)}>
             <h1 className={css.title}>{post.title}</h1>
             <Image
               src={`/images/${post.id}/${post.icon}`}
               width={400}
               height={400}
-              alt={"Painting Irises"}></Image>
+              alt={"icon for post"}></Image>
           </div>
         })
       }

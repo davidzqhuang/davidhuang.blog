@@ -1,5 +1,3 @@
-'use client'
-
 import css from "../../../styles/Post.module.css";
 
 import * as U from "../../../components/PostUtils";
