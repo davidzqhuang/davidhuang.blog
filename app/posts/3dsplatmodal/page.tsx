@@ -4,10 +4,14 @@ import css from "../../../styles/Post.module.css";
 import Editor from '@monaco-editor/react';
 
 import * as U from "../../../components/PostUtils";
+import Head from "next/head";
 
 export default function Post() {
     return (
         <>
+            <Head>
+                <title>3D Gaussian Splatting on Modal Labs</title>
+            </Head>
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>3D Gaussian Splatting on Modal Labs</h1>

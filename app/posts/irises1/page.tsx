@@ -1,10 +1,14 @@
 import Image from "next/image";
 import css from "../../../styles/Post.module.css";
 import * as U from "../../../components/PostUtils";
+import Head from "next/head";
 
 export default function Post() {
     return (
         <>
+            <Head>
+                <title>Painting Irises 1</title>
+            </Head>
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Painting irises 1</h1>

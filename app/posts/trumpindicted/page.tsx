@@ -20,6 +20,7 @@ type graphData = {
 };
 
 import data from "./data.json";
+import Head from 'next/head';
 
 data as graphData;
 
@@ -256,6 +257,9 @@ export default function Post() {
 
     return (
         <div>
+            <Head>
+                <title>Trump-world Indictments in Fulton County, Visualized</title>
+            </Head>
             <U.HomeButton />
             <div className="p-4" style={{
                 width: "100vh",

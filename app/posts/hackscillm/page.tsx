@@ -1,10 +1,14 @@
 import css from "../../../styles/Post.module.css";
 import Editor from '@monaco-editor/react';
 import * as U from "../../../components/PostUtils";
+import Head from "next/head";
 
 export default function Post() {
     return (
         <>
+            <Head>
+                <title>Hacking Kaggle Science LLM with difflib and more</title>
+            </Head>
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Hacking Kaggle Science LLM with difflib and more</h1>

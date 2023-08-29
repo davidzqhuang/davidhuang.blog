@@ -4,10 +4,14 @@
 import css from "../../../styles/Post.module.css";
 
 import * as U from "../../../components/PostUtils";
+import Head from "next/head";
 
 export default function Post() {
     return (
         <>
+            <Head>
+                <title>Compounding Artificial Intelligence (AI) Products</title>
+            </Head>
             <U.HomeButton />
 
             <div className={css.postContainer}>

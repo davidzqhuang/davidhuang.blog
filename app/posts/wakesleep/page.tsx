@@ -3,10 +3,14 @@
 import css from "../../../styles/Post.module.css";
 
 import * as U from "../../../components/PostUtils";
+import Head from "next/head";
 
 export default function Post() {
     return (
         <>
+            <Head>
+                <title>Are current language models more awake or asleep?</title>
+            </Head>
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Are current language models more awake or asleep?</h1>

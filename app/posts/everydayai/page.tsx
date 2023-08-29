@@ -1,9 +1,13 @@
 import css from "../../../styles/Post.module.css";
 import * as U from "../../../components/PostUtils";
+import Head from "next/head";
 
 export default function Post() {
     return (
         <>
+            <Head>
+                <title>The everyday use case for Artificial Intelligence </title>
+            </Head>
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>The everyday use case for Artificial Intelligence </h1>
