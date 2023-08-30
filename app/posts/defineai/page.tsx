@@ -19,7 +19,7 @@ export default function Post() {
 
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>What is the definition of artificial intelligence?</h1>
-                <h2 className={css.postSubtitle}>The answer according to Stuart Russell and Norvig is that Artificial Intelligence (AI) is the study of making computers think and/or act like human and/or ideal actors.</h2>
+                <h2 className={css.postSubtitle}>The answer according to Stuart Russell and Peter Norvig is that Artificial Intelligence (AI) is the study of making computers think and/or act like human and/or ideal actors.</h2>
                 <Image 
                     src="/images/defineai/figure.png"
                     alt="What is AI the study of? An informational graphic depicting the definition of AI according to Russell and Norvig. An 2 by 2 matrix showing artificial intelligence as the study of Ideal/Human Action/Thinking. Including definitions of AI by Haugeland, Rich and Knight, Charniak and McDermott,  and Schalkoff." 
