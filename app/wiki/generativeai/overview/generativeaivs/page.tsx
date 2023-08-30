@@ -3,7 +3,7 @@
 import Head from "next/head";
 import Data from "./pageData.mdx";
 
-import * as U from "../../../../components/Utils";
+import * as U from "../../../../../components/Utils";
 
 const Page = () => {
     return (

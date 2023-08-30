@@ -1,11 +1,11 @@
 import { useRouter } from 'next/navigation'
-import * as U from "../../../components/Utils";
+import * as U from "../../../../components/Utils";
 import Link from 'next/link';
 
 export default function Home() {
     return (
         <>      
-        <title>Generative AI: Overview @ davidhuang.blog</title>  
+        <title>Generative AI: Resources @ davidhuang.blog</title>  
         <div className={`p-32 bg-gradient-to-br from-orange-200 from-5% via-amber-400 via-30% to-pink-200 to-90% h-screen w-screen space-y-4`}>
             <div className='flex mb-8'>
                 <U.WikiButton />
@@ -20,7 +20,7 @@ export default function Home() {
                     <div className="flex-1">
                         <h2 className="font-bold text-xl mb-2">Generative AI</h2>
                         <ul className="list-disc pl-5">
-                            <li><Link href="/wiki/overview/generativeaivs" className="text-blue-500 hover:underline">Generative AI vs Other AI: Definitions by Comparison</Link></li>
+                            <li><Link href="/wiki/generativeai/resources/scholarlyarticles" className="text-blue-500 hover:underline">Scholarly Articles</Link></li>
                         </ul>
                     </div>
 
