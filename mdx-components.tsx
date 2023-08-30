@@ -49,8 +49,17 @@ const StyledBlockquote = styled.blockquote`
 `;
 
 const StyledUl = styled.ul`
+  list-style: disc outside;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  padding-left: 1.5rem;
+`;
+
+const StyledOl = styled.ol`
+  list-style: decimal outside;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
 `;
 
 const StyledLi = styled.li`
@@ -60,7 +69,7 @@ const StyledLi = styled.li`
 `;
 
 const StyledCode = styled.code`
-  background-color: #ffe5d4; // Light orange background for code
+  background-color: #ffe5d4; 
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.9rem;
@@ -90,6 +99,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     p: props => <StyledParagraph {...props} />,
     blockquote: props => <StyledBlockquote {...props} />,
     ul: props => <StyledUl {...props} />,
+    ol: props => <StyledOl {...props} />, // added this line for ordered lists
     li: props => <StyledLi {...props} />,
     code: props => <StyledCode {...props} />,
     pre: props => <StyledPre {...props} />,

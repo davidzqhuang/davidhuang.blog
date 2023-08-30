@@ -5,10 +5,11 @@ import Data from "./pageData.mdx";
 
 import * as U from "../../../../../components/Utils";
 
+
 const Page = () => {
     return (
         <>
-            <title>Generative AI vs. other types of AI</title>
+            <title>Generative AI at Work</title>
             <div className='flex mb-8'>
                 <U.WikiButton />
                 <U.HomeButton />
