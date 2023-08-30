@@ -90,6 +90,26 @@ const StyledA = styled.a`
   }
 `;
 
+const StyledStar = styled.span`
+  display: inline-block;
+  width: 16px;   // Adjust this width as needed
+  height: 16px;  // Adjust this height as needed
+  background-color: #ff6600;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  margin-right: 0.5rem; // Space between star and adjacent text
+`;
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: props => <StyledH1 {...props} />,
@@ -104,6 +124,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     code: props => <StyledCode {...props} />,
     pre: props => <StyledPre {...props} />,
     a: props => <StyledA {...props} />,
+    Star: props => <StyledStar {...props} />,
     ...components,
   };
 }
