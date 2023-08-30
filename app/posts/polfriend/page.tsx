@@ -8,7 +8,7 @@ import refData from './data.json'
 import { useEffect, useRef } from 'react'
 
 import css from "../../../styles/Post.module.css";
-import * as U from "../../../components/PostUtils";
+import * as U from "../../../components/Utils";
 
 
 console.log(refData)

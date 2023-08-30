@@ -5,7 +5,7 @@ import css from "../../../styles/Post.module.css";
 
 import { Canvas } from "@react-three/fiber";
 import Flower from "../../../components/Flower";
-import * as U from "../../../components/PostUtils";
+import * as U from "../../../components/Utils";
 import Head from "next/head";
 
 export default function Post() {

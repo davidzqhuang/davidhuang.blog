@@ -7,7 +7,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import css from "../../../styles/Post.module.css";
-import * as U from "../../../components/PostUtils";
+import * as U from "../../../components/Utils";
 
 type graphData = {
     nodes: {

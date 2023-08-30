@@ -1,6 +1,6 @@
 import css from "../../../styles/Post.module.css";
 
-import * as U from "../../../components/PostUtils";
+import * as U from "../../../components/Utils";
 import Image from 'next/image';
 import type { Metadata } from 'next';
 

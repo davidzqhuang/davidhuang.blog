@@ -1,6 +1,6 @@
 import Image from "next/image";
 import css from "../../../styles/Post.module.css";
-import * as U from "../../../components/PostUtils";
+import * as U from "../../../components/Utils";
 import Head from "next/head";
 
 export default function Post() {
