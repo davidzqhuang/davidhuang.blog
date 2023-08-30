@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
     "@monaco-editor/react": "^4.5.1",
+    "@next/mdx": "^13.4.19",
     "@react-three/cannon": "^6.5.2",
     "@react-three/fiber": "^8.13.6",
     "@types/node": "20.5.0",
@@ -26,6 +29,7 @@
     "react": "18.2.0",
     "react-bootstrap-icons": "^1.10.3",
     "react-dom": "18.2.0",
+    "styled-components": "^6.0.7",
     "tailwindcss": "3.3.3",
     "three": "^0.155.0",
     "three-stdlib": "^2.24.2",
