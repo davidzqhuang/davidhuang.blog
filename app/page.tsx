@@ -109,7 +109,7 @@ export default function Home() {
         <div
           className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
           onClick={() => router.push("/posts/everydayai")}>
-          <h1 className={css.title}>The everyday use case for Artificial Intelligence, an essay</h1>
+          <h1 className={css.title}>The everyday use case for Artificial Intelligence, a short piece</h1>
           <Image
             src="/images/everydayai/icon.jpg"
             width={400}
