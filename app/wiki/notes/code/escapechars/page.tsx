@@ -20,6 +20,7 @@ function StringEscapeComponent() {
       '>': '&gt;',
       '"': '&quot;',
       '\'': '&apos;',
+      '\n': '\\n'
     };
 
     return str.replace(/[&<>"']/g, char => replacements[char]);
@@ -32,6 +33,16 @@ function StringEscapeComponent() {
     setEscapedValue(escaped);
   };
 
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(escapedValue);
+      alert('Text copied to clipboard!');
+    } catch (err) {
+      alert('Failed to copy text to clipboard');
+    }
+  };
+
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', width: '100%' }}>
       <h2>Before:</h2>
@@ -43,6 +54,7 @@ function StringEscapeComponent() {
       />
 
       <h2>After:</h2>
+      <button className="border border-neutral-200 bg-neutral-100" onClick={copyToClipboard}>Click to Copy</button>
       <Editor
         height="200px"
         defaultLanguage="plaintext"

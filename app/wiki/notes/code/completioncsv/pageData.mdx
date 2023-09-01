@@ -3,4 +3,34 @@
 Provides a template for running an OpenAI completion on each row of a table based on the text in a single column. Caches each row as completions are finished.
 
 
-<Editor code="print(&quot;hello world&quot;)" language="python"/>
+<Editor code={`import os
+
+if os.path.exists("OutputedTable.csv"):
+    df = pd.read_csv("OutputedTable.csv") 
+import openai
+
+def get_output(text):
+    response = openai.ChatCompletion.create(
+      model="gpt-3.5-turbo",
+      messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": f"Please give me the topic and category of the following text: {text}"}
+        ]
+    )
+    return response.choices[0].message.content
+
+from tqdm import tqdm
+import pandas as pd  # Make sure to import pandas
+
+# Assuming 'df' is your DataFrame
+if not "output" in df.columns:
+    df["output"] = ""
+    
+for i in tqdm(range(len(df))):
+    output_value = df.loc[i, "output"]
+    if not isinstance(output_value, str):
+        df.loc[i, "output"] = ""
+        output_value = ""
+    if len(output_value) == 0:
+        df.loc[i, "output"] = get_tweet_prompt(df.loc[i, "text"])
+df.to_csv("OutputedTable.csv", index=False)`} language="python"/>
