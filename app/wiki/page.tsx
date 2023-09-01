@@ -50,6 +50,9 @@ export default function Home() {
                                 <li><Link href="/wiki/notes/byids" className="text-blue-500 hover:underline">By Identifier (DOI/ISBN/URLs)</Link></li>
                             </ul>
                             <ul className="list-disc pl-5">
+                                <li><Link href="/wiki/notes/code" className="text-blue-500 hover:underline">Code snippets</Link></li>
+                            </ul>
+                            <ul className="list-disc pl-5">
                                 <li><Link href="/wiki/notes/prompting" className="text-blue-500 hover:underline">On prompting</Link></li>
                             </ul>
                         </div>

@@ -84,7 +84,7 @@ const StyledPre = styled.pre`
 `;
 
 const StyledA = styled.a`
-  color: #ff6600;
+  color: #001eff;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
@@ -111,6 +111,48 @@ const StyledStar = styled.span`
   margin-right: 0.5rem; // Space between star and adjacent text
 `;
 
+import Editor from "@monaco-editor/react";
+
+//... rest of your existing imports
+
+const StyledEditorContainer = styled.div`
+  width: 100%;
+  height: 400px; // or any desired height
+  margin: 1rem 0;
+`;
+
+const MonacoCodeEditor = ({ code, language } : {
+  code: string;
+  language: string;
+}) => {
+  return (
+    <StyledEditorContainer>
+      <Editor
+        width="100%"
+        height="100%"
+        language={language}
+        theme="vs-light"
+        value={code}
+        options={{
+          selectOnLineNumbers: true,
+        }}
+      />
+    </StyledEditorContainer>
+  );
+};
+
+import Link from 'next/link';
+const InternalLink = ({ href, children, ...props } : {
+  href: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <Link href={href}>
+      <StyledA {...props}>{children}</StyledA>  
+    </Link>
+  )
+}
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: props => <StyledH1 {...props} />,
@@ -126,6 +168,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     pre: props => <StyledPre {...props} />,
     a: props => <StyledA {...props} />,
     Star: props => <StyledStar {...props} />,
+    Editor: props => <MonacoCodeEditor {...props} />,
+    InternalLink: props => <InternalLink {...props} />,
     ...components,
   };
 }
