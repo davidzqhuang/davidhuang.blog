@@ -80,6 +80,7 @@ const StyledPre = styled.pre`
   padding: 1rem;
   border-radius: 5px;
   overflow-x: auto;
+  white-space: pre-wrap;  // Added this line
 `;
 
 const StyledA = styled.a`
