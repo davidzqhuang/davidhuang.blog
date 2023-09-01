@@ -9,6 +9,7 @@ export default function Post() {
     return (
         <>
             <U.HomeButton />
+            <title>Can Generative AI Actually Be Creative?</title>
 
             <div className={css.postContainer}>
 

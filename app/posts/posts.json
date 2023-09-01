@@ -1,5 +1,11 @@
 [
     {
+        "id": "ftopenai",
+        "title": "Finetuning OpenAI on Twitter",
+        "date": "2023-09-01T19:29:00.884620",
+        "icon": "icon.jpg"
+    },
+    {
         "id": "actuallycreative",
         "title": "Can Generative AI Actually Be Creative?, a short piece",
         "date": "2023-08-31T21:12:51.662020",

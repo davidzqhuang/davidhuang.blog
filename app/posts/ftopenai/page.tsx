@@ -12,6 +12,8 @@ export default function Post() {
     return (
         <>
             <U.HomeButton />
+            <title>Finetuning OpenAI on Twitter</title>
+            <meta name="description" content="Finetuning OpenAI on Twitter. A brief, simple tutorial for intermediate programmers." />
 
             <div className={css.postContainer}>
 
