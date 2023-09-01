@@ -8,8 +8,8 @@ import * as U from "../../../../../components/Utils";
 const Page = () => {
     return (
         <>
-            <title>Glossary of Artifical Intelligence (AI) definitions</title>
-            <meta name="description" content="Glossary of Artifical Intelligence (AI) definitions" />
+            <title>Glossary of Artifical General/Super Intelligence (AI) definitions</title>
+            <meta name="description" content="Glossary of definitions of Artifical General Intelligence (AGI) and  Artificial Super Intelliggence (ASI, Superintelligence) from various sources." />
             <div className='flex mb-8'>
                 <U.WikiButton />
                 <U.HomeButton />
