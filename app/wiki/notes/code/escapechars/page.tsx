@@ -13,8 +13,8 @@ function StringEscapeComponent() {
   const [inputValue, setInputValue] = useState('print("hello world")');
   const [escapedValue, setEscapedValue] = useState('print(&quot;hello world&quot;)');
 
-  const escapeString = (str) => {
-    const replacements = {
+  const escapeString = (str: string) => {
+    const replacements: Record<string, string> = {
       '&': '&amp;',
       '<': '&lt;',
       '>': '&gt;',
@@ -26,6 +26,7 @@ function StringEscapeComponent() {
     return str.replace(/[&<>"']/g, char => replacements[char]);
   };
 
+  //ts-ignore
   const handleEditorChange = (value, event) => {
     setInputValue(value);
     // Escape the string
