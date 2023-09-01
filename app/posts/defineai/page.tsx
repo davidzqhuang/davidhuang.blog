@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Defining Artificial Intelligence (AI)',
-    description: 'The personal blog site of David, not to be confused with other David Huangs.',
+    description: 'Infographhic depicting the definition(s) of artificial intelligence (AI) according to Stuart Russell and Peter Norvig.',
     icons: {
       icon: '/icon.png',
     }

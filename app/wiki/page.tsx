@@ -19,6 +19,10 @@ export default function Home() {
                     <div className="flex space-x-6">
                         {/* Column 1 */}
                         <div className="flex-1">
+                            <h2 className="font-bold text-xl mb-2">Artificial General/Super Intelligence</h2>
+                            <ul className="list-disc pl-5">
+                                <li><Link href="/wiki/agsi/overview" className="text-blue-500 hover:underline">Overview</Link></li>
+                            </ul>
                             <h2 className="font-bold text-xl mb-2">Generative AI</h2>
                             <ul className="list-disc pl-5">
                                 <li><Link href="/wiki/generativeai/overview" className="text-blue-500 hover:underline">Overview</Link></li>

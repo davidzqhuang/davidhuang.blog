@@ -9,9 +9,6 @@ import Link from "next/link";
 const Page = () => {
     return (
         <>
-            <Head>
-                <title>Generative AI vs. other types of AI</title>
-            </Head>
             <div className='flex mb-8'>
                 <U.WikiButton />
                 <U.HomeButton />
