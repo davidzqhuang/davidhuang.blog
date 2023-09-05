@@ -10,6 +10,8 @@ import * as U from "../../../components/Utils";
 import data from "./data.json";
 import Head from 'next/head';
 
+import Link from 'next/link';
+
 function wrapText(selection) {
     selection.each(function () {
         console.log("THIS IS: ", this)
@@ -135,6 +137,8 @@ export default function Post() {
                 <h1 className={css.postTitle}>Breakdown in wages by job position in the United States.</h1>
                 <p className={css.postContent}>Displayed are the percent of wages in the United States from the specified job title. Job titles are coded by their Standard Occupation Classification or Occupational Employment and Wage Statistics title. </p>
                 <svg ref={svgRef} width={width} height={height}></svg>
+                <p classname={css.postContent}> I had used the tutorial at <Link className={css.a} href="https://www.datavistrainer.com/posts/beginner-s-guide-to-treemaps-in-d3-js">DataVisTrainer
+                </Link></p>
             </div>
         </div>
     );
