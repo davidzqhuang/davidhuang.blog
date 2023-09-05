@@ -27,6 +27,12 @@ const Page = () => {
                 >
                     Fjelland, R. (2020). Why general artificial intelligence will not be realized. In Humanities and Social Sciences Communications (Vol. 7, Issue 1). Springer Science and Business Media LLC. https://doi.org/10.1057/s41599-020-0494-4
                 </Link>
+                <Link
+                    href="/wiki/notes/byids/https$3a$2f$2fwww.bls.gov$2fsoc$2f2018$2fsoc_2018_class_and_coding_structure.pdf"
+                    className="text-blue-500 hover:underline"
+                >
+                    2018 SOC User Guide, Standard Occupational Classification and Coding Structure
+                </Link>
             </div>
         </>
     )

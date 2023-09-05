@@ -153,6 +153,39 @@ const InternalLink = ({ href, children, ...props } : {
   )
 }
 
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`;
+
+const StyledThead = styled.thead`
+  background-color: #f7f7f7;
+`;
+
+const StyledTbody = styled.tbody`
+  background-color: #fff;
+`;
+
+const StyledTh = styled.th`
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  text-align: left;
+`;
+
+const StyledTd = styled.td`
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+`;
+
+const StyledTr = styled.tr`
+  &:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+`;
+
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     h1: props => <StyledH1 {...props} />,
@@ -170,6 +203,12 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Star: props => <StyledStar {...props} />,
     Editor: props => <MonacoCodeEditor {...props} />,
     InternalLink: props => <InternalLink {...props} />,
+    table: props => <StyledTable {...props} />,
+    thead: props => <StyledThead {...props} />,
+    tbody: props => <StyledTbody {...props} />,
+    th: props => <StyledTh {...props} />,
+    td: props => <StyledTd {...props} />,
+    tr: props => <StyledTr {...props} />,
     ...components,
   };
 }
