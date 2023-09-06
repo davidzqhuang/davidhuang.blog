@@ -47,6 +47,9 @@ export default function Home() {
                             </ul>
                             <h2 className="font-bold text-xl mb-2">Notes</h2>
                             <ul className="list-disc pl-5">
+                                <li><Link href="/wiki/notes/assorted" className="text-blue-500 hover:underline">Assorted</Link></li>
+                            </ul>
+                            <ul className="list-disc pl-5">
                                 <li><Link href="/wiki/notes/byids" className="text-blue-500 hover:underline">By Identifier (DOI/ISBN/URLs)</Link></li>
                             </ul>
                             <ul className="list-disc pl-5">
