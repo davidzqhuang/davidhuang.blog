@@ -1,5 +1,11 @@
 [
     {
+        "id": "paintingiris2",
+        "title": "Painting Irises 2",
+        "date": "2023-09-05T19:29:00.884620",
+        "icon": "icon.jpg"
+    },
+    {
         "id": "tailwindpowerpointbeta",
         "title": "HTML to PPTX: Tailwind for PowerPoints (beta!)",
         "date": "2023-09-03T19:29:00.884620",
