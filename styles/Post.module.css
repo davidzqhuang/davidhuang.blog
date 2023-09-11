@@ -130,3 +130,52 @@
     border-radius: 10px; /* Adjust border radius for rounded corners */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
 }
+/* General list styles */
+.list {
+    margin: 1.5rem 0;
+    color: #444;
+}
+
+.listItem {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    list-style-position: inside;
+}
+
+/* Unordered lists */
+.unorderedList {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+/* Ordered lists */
+.orderedList {
+    list-style-type: decimal;
+    padding-left: 1.5rem;
+}
+
+/* Nested lists */
+.nestedList {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Styling for li items with emphasis */
+.listItemEmphasis {
+    font-style: italic;
+}
+
+.listItemExtraEmphasis {
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Different bullet type for nested ul */
+.nestedUnorderedList {
+    list-style-type: circle; 
+}
+
+.deepNestedUnorderedList {
+    list-style-type: square; 
+}
