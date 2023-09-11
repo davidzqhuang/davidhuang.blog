@@ -45,6 +45,8 @@ export default function Post() {
 
                 <p className={css.postContentEmphasis}>After (the PowerPoint):</p>
                 <Image src="/images/tailwindpowerpointbeta/pptx.jpg" width={1280} height={720} alt="websiteBefore" />
+
+                <p className={css.postContent}>The code for this is available on <a href="https://github.com/davidzqhuang/tailwind-powerpoint-beta">Github</a></p>.
             </div>
 
         </>
