@@ -10,6 +10,8 @@ import Flower from "../components/Flower";
 
 import posts from "./posts/posts.json";
 
+import Link from 'next/link'
+
 type Post = {
   id: string;
   title: string;
@@ -41,16 +43,17 @@ export default function Home() {
         </div>
         {
           postList.map((post) => {
-            return <div key={post.id}
-              className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl space-y-8"
-              onClick={() => router.push(`/posts/${post.id}`)}>
-              <h1 className={css.title}>{post.title}</h1>
-              <Image
-                src={`/images/${post.id}/${post.icon}`}
-                width={400}
-                height={400}
-                alt={"icon for post"}></Image>
-            </div>
+            return <Link href={`/posts/${post.id}`}>
+              <div key={post.id}
+                className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl space-y-8">
+                <h1 className={css.title}>{post.title}</h1>
+                <Image
+                  src={`/images/${post.id}/${post.icon}`}
+                  width={400}
+                  height={400}
+                  alt={"icon for post"}></Image>
+              </div>
+            </Link>
           })
         }
         <div
@@ -106,26 +109,28 @@ export default function Home() {
             height={400}
             alt={"Talk Politics, Crystallize your Beliefs"}></Image>
         </div>
-        <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
-          onClick={() => router.push("/posts/everydayai")}>
-          <h1 className={css.title}>The everyday use case for Artificial Intelligence, a short piece</h1>
-          <Image
-            src="/images/everydayai/icon.jpg"
-            width={400}
-            height={400}
-            alt={"The everyday use case for Artificial Intelligence"}></Image>
-        </div>
-        <div
-          className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl"
-          onClick={() => router.push("/posts/irises1")}>
-          <h1 className={css.title}>Painting Irises</h1>
-          <Image
-            src="/images/irises1/icon.jpeg"
-            width={400}
-            height={400}
-            alt={"Painting Irises"}></Image>
-        </div>
+        <Link href={`/posts/everydayai`}>
+          <div
+            className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl">
+            <h1 className={css.title}>The everyday use case for Artificial Intelligence, a short piece</h1>
+            <Image
+              src="/images/everydayai/icon.jpg"
+              width={400}
+              height={400}
+              alt={"The everyday use case for Artificial Intelligence"}></Image>
+          </div>
+        </Link>
+        <Link href={`/posts/irises1`}>
+          <div
+            className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl">
+            <h1 className={css.title}>Painting Irises</h1>
+            <Image
+              src="/images/irises1/icon.jpeg"
+              width={400}
+              height={400}
+              alt={"Painting Irises"}></Image>
+          </div>
+        </Link>
 
       </div>
     </div>
