@@ -1,0 +1,35 @@
+# Notes on PostgresSQL on AWS Lambda
+
+We add PostgresSQL via a Custom Layer
+
+Key points:
+1. Use docker build lambda ci
+2. Python version is important
+
+requirements.txt
+```plaintext
+certifi==2023.7.22
+charset-normalizer==3.2.0
+idna==3.4
+psycopg2-binary==2.9.7
+requests==2.31.0
+urllib3==1.26.15
+```
+
+Run this to build the layer (make sure to create empty `python` directory first)
+```bash
+docker run --rm \
+--volume=$(pwd):/lambda-build \
+-w=/lambda-build \
+lambci/lambda:build-python3.8 \
+pip install -r requirements.txt --target python
+```
+
+Run this to zip the layer up
+```bash
+zip -r layer python/
+```
+
+Then upload the `layer.zip` as a Custom Layer
+
+REMEMBER, use python3.8.
