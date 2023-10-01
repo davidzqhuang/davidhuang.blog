@@ -141,6 +141,31 @@ const MonacoCodeEditor = ({ code, language } : {
   );
 };
 
+const PythonEditor = ({ code } : {
+  code: string;
+}) => {
+  return <MonacoCodeEditor code={code} language="python" />;
+}
+
+const TypescriptEditor = ({ code } : {
+  code: string;
+}) => {
+  return (
+    <StyledEditorContainer>
+      <Editor
+        width="100%"
+        height="100%"
+        language="typescript"
+        theme="vs-light"
+        value={code}
+        options={{
+          selectOnLineNumbers: true,
+        }}
+      />
+    </StyledEditorContainer>
+  );
+};
+
 import Link from 'next/link';
 const InternalLink = ({ href, children, ...props } : {
   href: string;
@@ -202,6 +227,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: props => <StyledA {...props} />,
     Star: props => <StyledStar {...props} />,
     Editor: props => <MonacoCodeEditor {...props} />,
+    PythonEditor: props => <PythonEditor {...props} />,
+    TypescriptEditor: props => <TypescriptEditor {...props} />,
     InternalLink: props => <InternalLink {...props} />,
     table: props => <StyledTable {...props} />,
     thead: props => <StyledThead {...props} />,

@@ -1,0 +1,51 @@
+# Parsing multipart/form-data in a Lambda function Python3.8
+
+Be sure to actually use Python3.8.
+Be sure to not set the Content-Type header yourself, because there is a boundary parameter that shouldn't be overwritten.
+
+This works for Lambda functions called via the Function URL. Adapt headers and base64_encoded_data to handle functions called via API gateway, etc.
+
+<PythonEditor code={`import re
+    import base64
+    from streaming_form_data import StreamingFormDataParser
+    from streaming_form_data.targets import ValueTarget
+
+    headers = event['headers']
+    base64_encoded_data = event["body"]
+
+    # Decode the base64 encoded string
+    decoded_data = base64.b64decode(base64_encoded_data)
+
+    def parse_content_disposition(data):
+        # Convert bytes to string for regex
+        content = data
+
+        # Check if the string contains "Content-Disposition"
+        if b'Content-Disposition' in content:
+            # Use regex to extract the name and filename values
+            name_match = re.search(b'name="([^"]+)"', content)
+            name = name_match.group(1) if name_match else None
+
+            return {'name': str(name, 'utf-8')}
+        return None
+
+    ct = "Content-Type" if "Content-Type" in headers else "content-type"
+    boundary = bytes('--' + headers[ct].split('boundary=')[1], 'utf-8')
+    data = decoded_data.split(boundary)
+    parsed_data = [parse_content_disposition(d) for d in data]
+    parsed_data = [d for d in parsed_data if d is not None]
+
+    parser = StreamingFormDataParser(headers=headers)
+
+    target_dict = {}
+    for x in parsed_data:
+        target = ValueTarget()
+        target_dict[x["name"]] = target
+        parser.register(x["name"], target)
+
+    parser.data_received(decoded_data)
+
+    files = {
+        k: v.value
+        for k, v in target_dict.items()
+    }`} />
