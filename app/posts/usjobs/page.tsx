@@ -31,7 +31,7 @@ function wrapText(selection) {
             tspan = text.text(null)
                 .append("tspan")
                 .attr("x", 5)
-                .attr("y", y-5)
+                .attr("y", y - 5)
                 .attr("dy", dy + "em");
 
         while (word = words.pop()) {
@@ -45,7 +45,7 @@ function wrapText(selection) {
                 lineNumber += 1;
                 tspan = text.append("tspan")
                     .attr("x", 5)
-                    .attr("y", y + lineNumber * lineHeight-5)
+                    .attr("y", y + lineNumber * lineHeight - 5)
                     .text(word);
             }
         }
@@ -123,6 +123,28 @@ export default function Post() {
             .attr("text-shadow", "1px 1px 2px rgba(0,0,0,0.3)")  // Add shadow for better readability
             .attr("fill", "#000")
             .text(d => d.children ? d.data.name : "");
+
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0)
+            .style("position", "absolute")
+            .style("background", "white")
+            .style("padding", "5px")
+            .style("border", "1px solid black")
+            .style("border-radius", "5px")
+            .style("pointer-events", "none");
+
+        // Add mouseover and mouseout events to nodes
+        nodes.on("mouseover", function (event, d) {
+            console.log("MOUSEOVER", d)
+            tooltip.transition().duration(10).style("opacity", .9); // Show tooltip with transition
+            tooltip.html(d.data.name + "<br>" + "Value: " + d.value) // Set tooltip content
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+            .on("mouseout", function (d) {
+                tooltip.style("opacity", 0); // Hide tooltip with transition
+            });
 
     }, [data]);
 

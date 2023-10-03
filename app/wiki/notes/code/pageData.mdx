@@ -14,6 +14,15 @@
 <Editor code="print(&quot;hello world&quot;)" language="python"/>
 ```
 
+When needing to add indents, for some reason we need to add an extra tab in front of everything not on the lines with backticks.
+
+```jsx
+<Editor code={`for i in range(len(list_of_numbers)):
+        list_of_numbers[i] = list_of_numbers[i]*2
+`} language="python"/>
+```
+
+
 <Editor code="print(&quot;hello world&quot;)" language="python"/>
 
 Link to <InternalLink href="/wiki/notes/code/escapechars" children="tool to escape characters" />
