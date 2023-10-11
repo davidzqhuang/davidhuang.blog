@@ -43,7 +43,7 @@ export default function Post() {
                     />
                 </div>
 
-                <p className={css.postContent}>For this one, I got a new tube of light purple gouachem which unified the color a bit. I went for a bit more of a higher contrast with the dark grey background, and aggressive highlights and shadows.</p>
+                <p className={css.postContent}>For this one, I got a new tube of light purple gouache which unified the color a bit. I went for a bit more of a higher contrast with the dark grey background, and aggressive highlights and shadows.</p>
                 <div className={css.imageContainer}>
                     <Image
                         src="/images/irises1/gouache2.jpg"

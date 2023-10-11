@@ -1,0 +1,62 @@
+# Wrap Text (applied to JavaScript, d3.js, react)
+
+## wrap text function
+<TypescriptEditor code={`function wrapText(string, width, height) {
+        const factor = 0.65;
+        const fontSize = Math.sqrt((width - 4) * (height - 4) / string.length) * factor;
+
+        const lines = [];
+        let line = '';
+        let lineWidth = 0;
+        const words = string.split(' ');
+
+        for (let i = 0; i < words.length; i++) {
+            const word = words[i];
+            const wordWidth = word.length * fontSize * factor;
+
+            if (lineWidth + wordWidth <= width) {
+                line += word + ' ';
+                lineWidth += wordWidth;
+            } else if (lineWidth == 0) {
+                line += word.slice(0, Math.floor((width - lineWidth) / (fontSize * factor))) + '-';
+                lines.push(line);
+                line = word.slice(Math.floor((width - lineWidth) / (fontSize * factor))) + ' ';
+                lineWidth = wordWidth - Math.floor((width - lineWidth) / (fontSize * factor)) * fontSize * factor;
+            } else {
+                lines.push(line);
+                line = word + ' ';
+                lineWidth = wordWidth;
+            }
+        }
+
+        lines.push(line);
+
+        const result = {
+            fontSize: fontSize,
+            lines: lines
+        }
+        console.log(result);
+        return result;
+    }`}/>
+
+## Example of rendering text (I know this is inefficient)
+
+<TypescriptEditor code={`svg.selectAll('text')
+            .data(nodes)
+            .enter()
+            .append('text')
+            .attr('x', d => d.x) // modify as needed
+            .attr('y', d => d.y - d.r / 4) // modify as needed
+            .attr('text-anchor', 'middle') 
+            .attr('font-size', d => wrapText(d.data.Institution, d.r * 2, d.r * 2).fontSize) // modify as needed, make sure to keep the wrapText function
+            .attr('dominant-baseline', 'central') 
+            .each(function (d) {
+                const lines = wrapText(d.data.Institution, d.r * 2, d.r * 2).lines; // modify as needed, make sure to keep the wrapText function
+                for (let i = 0; i < lines.length; i++) {
+                    d3.select(this)
+                        .append('tspan')
+                        .attr('x', d.x)
+                        .attr('dy', i ? '1.2em' : 0)
+                        .text(lines[i]);
+                }
+            });`}`/>

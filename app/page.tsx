@@ -47,11 +47,14 @@ export default function Home() {
               <div key={post.id}
                 className="border-4 border-neutral-100 h-[400px] overflow-y-auto p-4 hover:border-blue-600 hover:border-4 cursor-pointer bg-gradient-to-br from-white from-10% to-emerald-100 to-90% shadow-xl space-y-8">
                 <h1 className={css.title}>{post.title}</h1>
-                <Image
+                {
+                  post.icon ?  <Image
                   src={`/images/${post.id}/${post.icon}`}
                   width={400}
                   height={400}
-                  alt={"icon for post"}></Image>
+                  alt={"icon for post"}></Image> : null
+                }
+               
               </div>
             </Link>
           })
