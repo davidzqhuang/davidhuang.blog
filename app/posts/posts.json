@@ -1,5 +1,17 @@
 [   
     {
+        "id": "familyportraitseason",
+        "title": "Changing the seasons on a family portrait with AI",
+        "date": "2023-11-14T19:29:00.884620",
+        "icon": null
+    },
+    {
+        "id": "newlanguage",
+        "title": "New Language for LLMs, a short piece",
+        "date": "2023-10-12T19:29:00.884620",
+        "icon": null
+    },
+    {
         "id": "clinicaltrialsinstitutions",
         "title": "Clinical Trials by Institution",
         "date": "2023-10-10T19:29:00.884620",
