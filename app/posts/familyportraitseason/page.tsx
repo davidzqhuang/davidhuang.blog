@@ -14,7 +14,7 @@ export default function Post() {
             <U.HomeButton />
             <div className={css.postContainer}>
                 <h1 className={css.postTitle}>Family Portrait Seasons</h1>
-                <p className={css.postContent}>Fall Source</p>
+                <p className={css.postContent}>Fall (Source)</p>
 
                 <div className={css.imageContainer}>
                     <Image

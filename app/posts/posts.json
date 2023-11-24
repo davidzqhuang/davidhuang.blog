@@ -1,9 +1,15 @@
 [   
     {
+        "id": "segmentation",
+        "title": "Good Image Segmentation",
+        "date": "2023-11-23T19:29:00.884620",
+        "icon": "_labelled_image.png"
+    },
+    {
         "id": "familyportraitseason",
         "title": "Changing the seasons on a family portrait with AI",
         "date": "2023-11-14T19:29:00.884620",
-        "icon": null
+        "icon": "icon.jpg"
     },
     {
         "id": "newlanguage",
