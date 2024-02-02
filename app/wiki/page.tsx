@@ -13,7 +13,7 @@ export default function Home() {
                 </div>
                 <div className="bg-white p-4 rounded-lg border-b-slate-200 shadow-xl">
                     <p className="text-3xl">davidhuang.blog/wiki</p>
-                    <p className="text-1xl mt-2">References of personal and perhaps broader interest, focused on knowledge, topics could include Artificial Intellligence, Information Theory, Metaphysics, Epistemeology, Logic, Behavioral Economics and the Scientific Process.</p>
+                    <p className="text-1xl mt-2">References of personal and perhaps broader interest, focused on knowledge</p>
                 </div>
                 <div className="bg-white p-4 rounded-lg border-b-slate-200 shadow-xl">
                     <div className="flex space-x-6">

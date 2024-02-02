@@ -1,0 +1,398 @@
+# PDF OCR, parsing complex PDFs with geometry
+
+```python
+import sys
+import io
+
+import boto3
+def ocr_AWS(aws_access_key_id, aws_secret_access_key, image_json):
+    session = boto3.Session(
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
+    )
+    client = session.client('textract', region_name="us-east-1")
+
+    response = client.detect_document_text(Document={'S3Object': image_json})
+    
+    return [block for block in response["Blocks"] if block and (block["BlockType"] == "LINE" or block["BlockType"] == "WORD")]
+
+import threading
+import time
+import requests
+import uuid
+import json
+
+def ocr_AWS_list(aws_access_key_id, aws_secret_access_key, image_json_list, progress_uuid, log_message):
+    session = boto3.Session(
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
+    )
+    client = session.client('textract', region_name="us-east-1")
+
+    # This list will store our results
+    results = [None] * len(image_json_list)
+
+    # This function will be executed in each thread
+    def fetch_text(index, image_json):
+        time.sleep(index * 0.2)
+        response = client.detect_document_text(Document={'S3Object': image_json})
+        results[index] = response
+        response = requests.post(
+                f"{log_message.dispatcher_url}/node_progress",
+                headers={"Content-Type": "application/json"},
+                json={
+                    "progressId": progress_uuid,
+                    "level": 1,
+                    "type": "progressbar",
+                    "data": {
+                                str(uuid.uuid4()): 1
+                             },
+                    "uuid": log_message.uuid,
+                },
+            )
+
+    threads = []
+    for i, image_json in enumerate(image_json_list):
+        thread = threading.Thread(target=fetch_text, args=(i, image_json))
+        thread.start()
+        threads.append(thread)
+
+    # Wait for all threads to complete
+    for thread in threads:
+        thread.join()
+
+    return [[block for block in response["Blocks"] if block and (block["BlockType"] == "LINE" or block["BlockType"] == "WORD")] for response in results if response]
+
+def ocr_img(image,
+            aws_access_key_id: str,
+            aws_secret_access_key: str):
+    
+    presigned_url = image["url"]
+    bucket = presigned_url.split("/")[2].split(".")[0]
+    key = presigned_url.split("/")[3].split("?")[0]
+    
+    return ocr_AWS(aws_access_key_id, aws_secret_access_key, {
+        "Bucket": bucket,
+        "Name": key
+    })
+
+def ocr_img_clean(
+    image,
+    aws_access_key_id: str,
+    aws_secret_access_key: str):
+    
+    presigned_url = image["url"]
+    bucket = presigned_url.split("/")[2].split(".")[0]
+    key = presigned_url.split("/")[3].split("?")[0]
+    
+    blocks = ocr_AWS(aws_access_key_id, aws_secret_access_key, {
+        "Bucket": bucket,
+        "Name": key
+    })
+    
+    new_blocks = []
+    for block in blocks:
+        new_block = {}
+        
+        new_block["Text"] = block["Text"]
+        new_block["BoundingBox"] = block["Geometry"]["BoundingBox"]
+        new_blocks.append(new_block)
+    return clean_leaf({"blocks": new_blocks})
+
+()
+def ocr_img_list_clean(
+    image_list,
+    aws_access_key_id: str,
+    aws_secret_access_key: str,
+    log_message = print):
+    import requests
+    import uuid
+    progress_uuid = str(uuid.uuid4())
+    response = requests.post(
+        f"{log_message.dispatcher_url}/node_progress",
+        headers={"Content-Type": "application/json"},
+        json={
+            "progressId": progress_uuid,
+            "level": 1,
+            "type": "progressbar",
+            "data": {
+                        "numItems": len(image_list),
+                     },
+            "uuid": log_message.uuid,
+        },
+    )
+    
+    
+    image_list = [{
+        "Bucket": image["url"].split("/")[2].split(".")[0],
+        "Name": image["url"].split("/")[3].split("?")[0]
+    } for image in image_list]
+    
+    blocks_list = ocr_AWS_list(aws_access_key_id, aws_secret_access_key, image_list, progress_uuid, log_message)
+    new_blocks_list = []
+    for blocks in blocks_list:
+        new_blocks = []
+        for block in blocks:
+            new_block = {}
+            
+            new_block["Text"] = block["Text"]
+            new_block["BoundingBox"] = block["Geometry"]["BoundingBox"]
+            new_blocks.append(new_block)
+        new_blocks_list.append(clean_leaf({"blocks": new_blocks}))
+        
+    return new_blocks_list
+
+def pg_horizontal_(group, theta):
+    # Base case: If it's a leaf group
+    if "blocks" in group:
+        # Sorting based on horizontal position (i.e., Left property)
+        sorted_blocks = sorted(group["blocks"], key=lambda block: block["BoundingBox"]["Left"])
+        if len(sorted_blocks) == 0:
+            return group
+        # Separating blocks that are at least theta apart horizontally
+        separated_groups = []
+        current_group = [sorted_blocks[0]]
+        prev_right = sorted_blocks[0]["BoundingBox"]["Left"] + sorted_blocks[0]["BoundingBox"]["Width"]
+        for i in range(1, len(sorted_blocks)):
+            cur_prev_right = sorted_blocks[i-1]["BoundingBox"]["Left"] + sorted_blocks[i-1]["BoundingBox"]["Width"]
+            if cur_prev_right > prev_right:
+                prev_right = cur_prev_right
+                
+            curr_left = sorted_blocks[i]["BoundingBox"]["Left"]
+
+            if curr_left - prev_right >= theta or (sorted_blocks[i]["BoundingBox"]["Left"] + sorted_blocks[i]["BoundingBox"]["Width"] - prev_right) / (sorted_blocks[i]["BoundingBox"]["Width"]) >= 0.5:
+                separated_groups.append({"blocks": current_group.copy()})
+                current_group = []
+
+            current_group.append(sorted_blocks[i])
+
+        if current_group:
+            separated_groups.append({"blocks": current_group})
+
+        return separated_groups
+    else:
+        # If it's an internal group, apply the function recursively to all its subgroups
+        for idx, sub_group in enumerate(group):
+            group[idx] = pg_horizontal_(sub_group, theta)
+        return group
+
+
+def pg_vertical_(group, theta):
+    # Base case: If it's a leaf group
+    if "blocks" in group:
+        # Sorting based on vertical position (i.e., Top property)
+        sorted_blocks = sorted(group["blocks"], key=lambda block: block["BoundingBox"]["Top"])
+        if len(sorted_blocks) == 0:
+            return group
+        # Separating blocks that are at least theta apart vertically
+        separated_groups = []
+        current_group = [sorted_blocks[0]]
+        prev_bottom = sorted_blocks[0]["BoundingBox"]["Top"] + sorted_blocks[0]["BoundingBox"]["Height"]
+        
+        for i in range(1, len(sorted_blocks)):
+            cur_prev_bottom = sorted_blocks[i-1]["BoundingBox"]["Top"] + sorted_blocks[i-1]["BoundingBox"]["Height"]
+            if cur_prev_bottom > prev_bottom:
+                prev_bottom = cur_prev_bottom
+            curr_top = sorted_blocks[i]["BoundingBox"]["Top"]
+
+            if curr_top - prev_bottom >= theta:
+                separated_groups.append({"blocks": current_group.copy()})
+                current_group = []
+
+            current_group.append(sorted_blocks[i])
+
+        if current_group:
+            separated_groups.append({"blocks": current_group})
+
+        return separated_groups
+    else:
+        # If it's an internal group, apply the function recursively to all its subgroups
+        for idx, sub_group in enumerate(group):
+            group[idx] = pg_vertical_(sub_group, theta)
+        return group
+
+def pg_horizontal(group, theta: float):
+    return pg_horizontal_(group, theta)
+
+def pg_vertical(group, theta: float):
+    return pg_vertical_(group, theta)
+
+def is_contained(block1, block2):
+    """
+    Checks if block1 is more than 80% within block2.
+    """
+    left1, top1 = block1["BoundingBox"]["Left"], block1["BoundingBox"]["Top"]
+    right1 = left1 + block1["BoundingBox"]["Width"]
+    bottom1 = top1 + block1["BoundingBox"]["Height"]
+
+    left2, top2 = block2["BoundingBox"]["Left"], block2["BoundingBox"]["Top"]
+    right2 = left2 + block2["BoundingBox"]["Width"]
+    bottom2 = top2 + block2["BoundingBox"]["Height"]
+    
+    # Calculating overlapping area
+    overlap_left = max(left1, left2)
+    overlap_right = min(right1, right2)
+    overlap_top = max(top1, top2)
+    overlap_bottom = min(bottom1, bottom2)
+
+    if overlap_left < overlap_right and overlap_top < overlap_bottom:
+        overlap_area = (overlap_right - overlap_left) * (overlap_bottom - overlap_top)
+        block1_area = block1["BoundingBox"]["Width"] * block1["BoundingBox"]["Height"]
+
+        return overlap_area / block1_area > 0.8
+    return False
+import random
+
+def clean_leaf(group, alpha=0.002):
+    """
+    Cleans a leaf group by removing blocks that are more than 80% within another block 
+    and serializing the text.
+    """
+    
+    for i in range(len(group["blocks"])):
+        group["blocks"][i]["BoundingBox"] = {
+            "Top": group["blocks"][i]["BoundingBox"]["Top"] + random.uniform(-alpha, alpha),
+            "Left": group["blocks"][i]["BoundingBox"]["Left"] + random.uniform(-alpha, alpha),
+        }
+    
+    import json
+    
+    cleaned_blocks = []
+    for i, block in enumerate(group["blocks"]):
+        if not any(is_contained(block, other) for j, other in enumerate(group["blocks"]) if block != other):
+            cleaned_blocks.append(block)
+    
+    # Sorting with fuzziness: top to bottom, then left to right
+    cleaned_blocks.sort(key=lambda b: (round(b["BoundingBox"]["Top"] / alpha) * alpha,
+                                        round(b["BoundingBox"]["Left"] / alpha) * alpha))
+    
+    # Serializing the text
+    serialized_text = ' '.join(block["Text"] for block in cleaned_blocks)
+
+    return {"blocks": cleaned_blocks, "serialized_text": serialized_text}
+
+def clean(group):
+    """
+    Recursive function to process all leaf groups in the given group.
+    """
+    if isinstance(group,dict) and "blocks" in group:  # Leaf group
+        if len(group["blocks"]) == 0:
+            return group
+        return clean_leaf(group)
+    else:  # Internal group
+        for idx, sub_group in enumerate(group):
+            group[idx] = clean(sub_group)
+        return group
+
+def clean_group(group):
+    return clean(group)
+
+def serialize_cleaned_group_(cleaned_group):
+    """
+    Serializes the text in a cleaned group.
+    """
+    if isinstance(cleaned_group, dict) and "blocks" in cleaned_group:  # Leaf group
+        if len(cleaned_group["blocks"]) == 0:
+            return ""
+        return cleaned_group["serialized_text"]
+    else:  # Internal group
+        return "\n".join([serialize_cleaned_group(sub_group) for sub_group in cleaned_group])
+
+def serialize_cleaned_group(cleaned_group):
+    return serialize_cleaned_group_(cleaned_group)
+
+def serialize_as_blocks_cleaned_group_(cleaned_group):
+    """
+    Serializes the text in a cleaned group.
+    """
+    if isinstance(cleaned_group, dict) and "blocks" in cleaned_group:  # Leaf group
+        if len(cleaned_group["blocks"]) == 0:
+            return []
+        return cleaned_group["blocks"]
+    else:  # Internal group
+        return [block for sub_group in cleaned_group for block in serialize_as_blocks_cleaned_group_(sub_group)]
+    
+def serialize_as_blocks_cleaned_group(cleaned_group):
+    return serialize_as_blocks_cleaned_group_(cleaned_group)
+
+def serialize_as_group_text_cleaned_group_(cleaned_group):
+    """
+    Serializes the text in a cleaned group.
+    """
+    if isinstance(cleaned_group, dict) and "blocks" in cleaned_group:  # Leaf group
+        if len(cleaned_group["blocks"]) == 0:
+            return []
+        bbox = {
+            "Top": min([block["BoundingBox"]["Top"] for block in cleaned_group["blocks"]]),
+            "Left": min([block["BoundingBox"]["Left"] for block in cleaned_group["blocks"]]),
+        }
+        bbox["Width"] = max([block["BoundingBox"]["Left"] + block["BoundingBox"]["Width"] for block in cleaned_group["blocks"]]) - bbox["Left"]
+        bbox["Height"] = max([block["BoundingBox"]["Top"] + block["BoundingBox"]["Height"] for block in cleaned_group["blocks"]]) - bbox["Top"]
+        
+        return [{"Text": cleaned_group["serialized_text"],
+                "BoundingBox": bbox
+        }]
+    elif isinstance(cleaned_group, list):  # Internal group
+        flat_list = []
+        for sub_group in cleaned_group:
+            flat_list.extend(serialize_as_group_text_cleaned_group_(sub_group))
+        return flat_list
+    else:
+        return []
+
+def serialize_as_group_text_cleaned_group(cleaned_group):
+    return serialize_as_group_text_cleaned_group_(cleaned_group)
+
+# ******* IMPORTANT ********
+# This function is the one that (mainly) should be the one called from the outside
+# Blocks is the result of calling Textract
+def fast_process_blocks(blocks):
+    """
+    Processes a list of blocks by cleaning them and serializing the text.
+    """
+    
+    {
+      "Text": "US 9,676,813 B2",
+      "BoundingBox": {
+        "Top": 0.06671290844678879,
+        "Left": 0.4252523183822632,
+        "Width": 0.14123815298080444,
+        "Height": 0.013692133128643036
+      }
+    }
+    # filter blocks with an area of less than 0.0001
+    blocks = {"blocks":[block for block in blocks["blocks"] if block["BoundingBox"]["Width"] * block["BoundingBox"]["Height"] > 0.0003]}
+    
+    blocks = pg_horizontal_(blocks, 0.03)
+    blocks = pg_vertical_(blocks, 0.01)
+    blocks = pg_horizontal_(blocks, 0.01)
+    blocks = pg_vertical_(blocks, 0.01)
+    blocks = pg_horizontal_(blocks, 0.01)
+    
+    return clean(blocks)
+
+def fast_proccess_blocks_list(blocks_list):
+    blocks_list = json.load(open(blocks_list))
+    result = [fast_process_blocks(blocks) for blocks in blocks_list]
+   
+    return result
+
+def serialize_as_blocks_cleaned_group_list(cleaned_group_list):
+    cleaned_group_list = json.load(open(cleaned_group_list))
+    result = [serialize_as_blocks_cleaned_group_(cleaned_group) for cleaned_group in cleaned_group_list]
+
+    return result
+
+def serialize_as_text_cleaned_group_list(cleaned_group_list):
+    cleaned_group_list = json.load(open(cleaned_group_list))
+    result = [" ".join([block["Text"] for block in serialize_as_blocks_cleaned_group_(cleaned_group)]) for cleaned_group in cleaned_group_list]
+    return result
+
+def filtered_serialize_as_blocks_cleaned_group_list(cleaned_group_list):
+    cleaned_group_list = json.load(open(cleaned_group_list))
+    result = [serialize_as_group_text_cleaned_group_(cleaned_group) for cleaned_group in cleaned_group_list if cleaned_group]
+    result = [[block for block in blocks if len(block["Text"]) > 100] for blocks in result]
+    with open("results.json", "w+") as f:
+        json.dump(result, f)
+    return olo.OutputFile("results.json")
+```
